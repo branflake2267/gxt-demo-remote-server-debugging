@@ -187,6 +187,8 @@
 	</dependencies>
 
 	<profiles>
+		<!-- init debugging with -->
+		<!-- mvn install -Pdebug -->
 		<profile>
 			<id>debug</id>
 			<build>
