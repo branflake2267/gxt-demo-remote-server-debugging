@@ -1,294 +1,293 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>mysandboxapp</groupId>
-	<artifactId>mysandboxapp</artifactId>
-	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
-	<name>mysandboxapp</name>
-	<description>Very basic GXT maven setup</description>
+  <groupId>mysandboxapp</groupId>
+  <artifactId>mysandboxapp</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>mysandboxapp</name>
+  <description>Very basic GXT maven setup</description>
 
-	<properties>
-		<!-- GXT -->
-		<gxt.version>4.0.2</gxt.version>
+  <properties>
+    <!-- GXT -->
+    <gxt.version>4.0.2</gxt.version>
 
-		<!-- GWT -->
-		<gwt.version>2.8.0</gwt.version>
-		<gwt.maven.version>2.8.0</gwt.maven.version>
-		<gwt.style>OBF</gwt.style>
+    <!-- GWT -->
+    <gwt.version>2.8.0</gwt.version>
+    <gwt.maven.version>2.8.0</gwt.maven.version>
+    <gwt.style>OBF</gwt.style>
 
-		<!-- Maven -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-	</properties>
+    <!-- Maven -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+  </properties>
 
-	<build>
-		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+  <build>
+    <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<fork>true</fork>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <fork>true</fork>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
 
-			<!-- Skips the GWTTestCases during Junit Testing -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12</version>
-				<configuration>
-					<includes>
-						<include>**/*Test.java</include>
-					</includes>
-					<excludes>
-						<exclude>**/*GwtTest.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+      <!-- Skips the GWTTestCases during Junit Testing -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12</version>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+          <excludes>
+            <exclude>**/*GwtTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
 
-			<!-- GWT -->
-			<!-- 'mvn gwt:run' - runs development mode -->
-			<!-- 'mvn gwt:debug' - runs debug mode -->
-			<!-- 'mvn gwt:compile' - compiles gwt -->
-			<!-- 'mvn gwt:test' or 'mvn integration-test' - runs the gwt tests (*GwtTest.java), 
-				(run a suite its faster) -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<version>${gwt.maven.version}</version>
-				<configuration>
-					<strict>true</strict>
+      <!-- GWT -->
+      <!-- 'mvn gwt:run' - runs development mode -->
+      <!-- 'mvn gwt:debug' - runs debug mode -->
+      <!-- 'mvn gwt:compile' - compiles gwt -->
+      <!-- 'mvn gwt:test' or 'mvn integration-test' - runs the gwt tests (*GwtTest.java), (run a suite its faster) -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>${gwt.maven.version}</version>
+        <configuration>
+          <strict>true</strict>
 
-					<testTimeOut>180</testTimeOut>
-					<includes>**/*GwtTestSuite.java</includes>
-					<excludes>**/*GwtTest.java</excludes>
-					<mode>htmlunit</mode>
+          <testTimeOut>180</testTimeOut>
+          <includes>**/*GwtTestSuite.java</includes>
+          <excludes>**/*GwtTest.java</excludes>
+          <mode>htmlunit</mode>
 
-					<extraJvmArgs>-Xss1024K -Xmx1g -XX:MaxPermSize=256M</extraJvmArgs>
-					<logLevel>INFO</logLevel>
-					<style>${gwt.style}</style>
+          <extraJvmArgs>-Xss1024K -Xmx1g -XX:MaxPermSize=256M</extraJvmArgs>
+          <logLevel>INFO</logLevel>
+          <style>${gwt.style}</style>
 
-					<copyWebapp>true</copyWebapp>
-					<hostedWebapp>${webappDirectory}</hostedWebapp>
+          <copyWebapp>true</copyWebapp>
+          <hostedWebapp>${webappDirectory}</hostedWebapp>
 
-					<runTarget>MySandboxAppProject.html</runTarget>
-					<module>com.gawkat.sandbox.MySandboxAppProject</module>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+          <runTarget>MySandboxAppProject.html</runTarget>
+          <module>com.gawkat.sandbox.MySandboxAppProject</module>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
-		</plugins>
-	</build>
+    </plugins>
+  </build>
 
-	<repositories>
-		<repository>
-			<!-- http://docs.sencha.com/gxt/latest/getting_started/maven/Maven.html -->
-			<!-- ~/.m2/settings.xml add <server/> with the support portal credentials -->
-			<id>sencha-gxt-repository</id>
-			<name>Sencha GXT Repository</name>
+  <repositories>
+    <repository>
+      <!-- http://docs.sencha.com/gxt/latest/getting_started/maven/Maven.html -->
+      <!-- ~/.m2/settings.xml add <server/> with the support portal credentials -->
+      <id>sencha-gxt-repository</id>
+      <name>Sencha GXT Repository</name>
 
-			<!-- Commercial (with Support) -->
-			<!-- <url>https://maven.sencha.com/repo/gxt-commercial-release</url> -->
-			<url>https://maven.sencha.com/repo/gxt-support-commercial-release</url>
-			<!-- <url>https://maven.sencha.com/repo/gxt-commercial-snapshot</url> -->
+      <!-- Commercial (with Support) -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-commercial-release</url> -->
+      <url>https://maven.sencha.com/repo/gxt-support-commercial-release</url>
+      <!-- <url>https://maven.sencha.com/repo/gxt-commercial-snapshot</url> -->
 
-			<!-- GPL -->
-			<!-- <url>https://maven.sencha.com/repo/gxt-gpl-release</url> -->
-			<!-- <url>https://maven.sencha.com/repo/gxt-gpl-snapshot</url> -->
+      <!-- GPL -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-gpl-release</url> -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-gpl-snapshot</url> -->
 
-			<!-- GPL with Support -->
-			<!-- <url>https://maven.sencha.com/repo/gxt-support-gpl-release</url> -->
-		</repository>
-	</repositories>
+      <!-- GPL with Support -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-support-gpl-release</url> -->
+    </repository>
+  </repositories>
 
-	<!-- GWT (BOM or Bill of Materials) -->
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.google.gwt</groupId>
-				<artifactId>gwt</artifactId>
-				<version>${gwt.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+  <!-- GWT (BOM or Bill of Materials) -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.google.gwt</groupId>
+        <artifactId>gwt</artifactId>
+        <version>${gwt.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
-	<dependencies>
-		<!-- GXT -->
-		<!-- http://docs.sencha.com/gxt/3.x/getting_started/maven/Maven.html -->
-		<dependency>
-			<groupId>com.sencha.gxt</groupId>
-			<artifactId>gxt</artifactId>
-			<version>${gxt.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sencha.gxt</groupId>
-			<artifactId>gxt-chart</artifactId>
-			<version>${gxt.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Neptune Theme -->
-		<dependency>
-			<groupId>com.sencha.gxt</groupId>
-			<artifactId>gxt-theme-neptune</artifactId>
-			<version>${gxt.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Triton Theme -->
-		<dependency>
-			<groupId>com.sencha.gxt</groupId>
-			<artifactId>gxt-theme-triton</artifactId>
-			<version>${gxt.version}</version>
-			<scope>provided</scope>
-		</dependency>
+  <dependencies>
+    <!-- GXT -->
+    <!-- http://docs.sencha.com/gxt/3.x/getting_started/maven/Maven.html -->
+    <dependency>
+      <groupId>com.sencha.gxt</groupId>
+      <artifactId>gxt</artifactId>
+      <version>${gxt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sencha.gxt</groupId>
+      <artifactId>gxt-chart</artifactId>
+      <version>${gxt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Neptune Theme -->
+    <dependency>
+      <groupId>com.sencha.gxt</groupId>
+      <artifactId>gxt-theme-neptune</artifactId>
+      <version>${gxt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Triton Theme -->
+    <dependency>
+      <groupId>com.sencha.gxt</groupId>
+      <artifactId>gxt-theme-triton</artifactId>
+      <version>${gxt.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
-		<!-- GWT -->
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-codeserver</artifactId>
-			<scope>provided</scope>
-		</dependency>
+    <!-- GWT -->
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-codeserver</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
-		<!-- Testing -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <!-- Testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-	<profiles>
-		<!-- init debugging with -->
-		<!-- mvn install -Pdebug -->
-		<profile>
-			<id>debug</id>
-			<build>
+  <profiles>
+    <!-- init debugging with -->
+    <!-- mvn install -Pdebug -->
+    <profile>
+      <id>debug</id>
+      <build>
 
-				<plugins>
+        <plugins>
 
-					<!-- Copy File -->
-					<plugin>
-						<artifactId>maven-resources-plugin</artifactId>
-						<version>2.7</version>
-						<executions>
-							<execution>
-								<id>copy-resource-for-sdm</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>copy-resources</goal>
-								</goals>
-								<configuration>
-									<outputDirectory>${webappDirectory}/MySandboxAppProject</outputDirectory>
-									<overwrite>true</overwrite>
-									<resources>
-										<resource>
-											<directory>${basedir}/debug</directory>
-											<includes>
-												<include>MySandboxAppProject.nocache.js</include>
-											</includes>
-										</resource>
-									</resources>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
+          <!-- Copy File -->
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.7</version>
+            <executions>
+              <execution>
+                <id>copy-resource-for-sdm</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${webappDirectory}/MySandboxAppProject</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <resources>
+                    <resource>
+                      <directory>${basedir}/debug</directory>
+                      <includes>
+                        <include>MySandboxAppProject.nocache.js</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
-					<!-- get ip address -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>3.0.0</version>
-						<executions>
-							<execution>
-								<id>get-local-ip</id>
-								<phase>prepare-package</phase>
-								<goals>
-									<goal>local-ip</goal>
-								</goals>
-								<configuration>
-									<!-- if not given, 'local.ip' name is used -->
-									<localIpProperty>my.local.ip</localIpProperty>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
+          <!-- get ip address -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>get-local-ip</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>local-ip</goal>
+                </goals>
+                <configuration>
+                  <!-- if not given, 'local.ip' name is used -->
+                  <localIpProperty>my.local.ip</localIpProperty>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
-					<!-- Replace ip address in target module.nocache.js file -->
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>prepare-package</phase>
-								<configuration>
-									<tasks>
-										<replace token="$wnd.location.hostname" value="'${my.local.ip}'" dir="${webappDirectory}/MySandboxAppProject">
-											<include name="MySandboxAppProject.nocache.js" />
-										</replace>
-									</tasks>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
+          <!-- Replace ip address in target module.nocache.js file -->
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>prepare-package</phase>
+                <configuration>
+                  <tasks>
+                    <replace token="$wnd.location.hostname" value="'${my.local.ip}'" dir="${webappDirectory}/MySandboxAppProject">
+                      <include name="MySandboxAppProject.nocache.js" />
+                    </replace>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
 
-					<!-- deploy to wildfly webserver -->
-					<!-- mvn wildfly:deploy -->
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>1.2.0.Alpha5</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<goals>
-									<goal>deploy</goal>
-								</goals>
-							</execution>
-						</executions>
+          <!-- deploy to wildfly webserver -->
+          <!-- mvn wildfly:deploy -->
+          <plugin>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>1.2.0.Alpha5</version>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>deploy</goal>
+                </goals>
+              </execution>
+            </executions>
 
-						<configuration>
-							<hostname>127.0.0.1</hostname>
-							<port>9990</port>
-							<username>manager</username>
-							<password>pz9cKxSs</password>
-							<name>mysandboxapp.war</name>
-						</configuration>
-					</plugin>
+            <configuration>
+              <hostname>127.0.0.1</hostname>
+              <port>9990</port>
+              <username>manager</username>
+              <password>pz9cKxSs</password>
+              <name>mysandboxapp.war</name>
+            </configuration>
+          </plugin>
 
-				</plugins>
+        </plugins>
 
-			</build>
-		</profile>
-	</profiles>
+      </build>
+    </profile>
+  </profiles>
 </project>
