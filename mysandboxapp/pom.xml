@@ -279,7 +279,7 @@
               <hostname>127.0.0.1</hostname>
               <port>9990</port>
               <username>manager</username>
-              <password>pz9cKxSs</password>
+              <password></password>
               <name>mysandboxapp.war</name>
             </configuration>
           </plugin>
