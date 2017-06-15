@@ -191,10 +191,9 @@
     <profile>
       <id>debug</id>
       <build>
-
         <plugins>
-
-          <!-- Copy File -->
+          <!-- 1. Copy the module.nocache.js file - retrieve this from start the code server -->
+          <!-- I'm storing the code server ./debug -->
           <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>2.7</version>
@@ -221,7 +220,7 @@
             </executions>
           </plugin>
 
-          <!-- get ip address -->
+          <!-- 2. Get ip address from the computer -->
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>build-helper-maven-plugin</artifactId>
@@ -241,7 +240,7 @@
             </executions>
           </plugin>
 
-          <!-- Replace ip address in target module.nocache.js file -->
+          <!-- 3. Replace ip address in target module.nocache.js file -->
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
@@ -249,6 +248,7 @@
                 <phase>prepare-package</phase>
                 <configuration>
                   <tasks>
+                    <!-- Replace window hostname with localip -->
                     <replace token="$wnd.location.hostname" value="'${my.local.ip}'" dir="${webappDirectory}/MySandboxAppProject">
                       <include name="MySandboxAppProject.nocache.js" />
                     </replace>
@@ -261,7 +261,7 @@
             </executions>
           </plugin>
 
-          <!-- deploy to wildfly webserver -->
+          <!-- 4. Deploy to remote webserver, in this case wildfly -->
           <!-- mvn wildfly:deploy -->
           <plugin>
             <groupId>org.wildfly.plugins</groupId>
@@ -275,7 +275,6 @@
                 </goals>
               </execution>
             </executions>
-
             <configuration>
               <hostname>127.0.0.1</hostname>
               <port>9990</port>
