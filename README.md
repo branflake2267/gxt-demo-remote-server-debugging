@@ -1,6 +1,7 @@
 # gxt-demo-remote-server-debugging
 Demo remote super dev mode debugging
 
+## Video Tutorial
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vxwdI6GWYOY/0.jpg)](https://www.youtube.com/watch?v=YvxwdI6GWYOY)
 
 ## Debugging
